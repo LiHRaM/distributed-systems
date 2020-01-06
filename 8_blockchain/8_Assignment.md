@@ -48,7 +48,15 @@ Asymmetric Cryptography allows users of the blockchain to both sign and verify b
 ## Paxos consensus
 * **A blockchain network is completely asynchronous and decentralized. 
 * **For currency, this requires the solving of the problem of double-spending, i.e. being able to spend the same money more than once.
-  * ** Paxos Consensus works by sending a prepare request to some acceptors (other participants of the blockchain)
+* Paxos is named after the Parliament on the fictitious Greek island of Paxos.
+* Paxos is a family of algorithms (by Leslie Lamport) for distributed consensus in an asynchronous system
+* ** In Paxos termination / liveness is not guaranteed, but happens in “reasonable environments”
+* * ** Different roles exist:
+  * Proposer: Offers proposals, with multiple proposers at once, they instead compete to reach approval first.
+  * Acceptors: Accepts or rejects proposals
+  * Learners: Simply learns the agreed upon proposals
+* Proposals must have majority to be accepted.
+* ** Paxos Consensus works by sending a prepare request to some acceptors (other participants of the blockchain)
   * ** The acceptors accept the proposal
   * ** The proposer sends a commit request
   * ** The acceptors accept the commit.
