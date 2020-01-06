@@ -1,0 +1,3 @@
+[submodule "hadoop-rs"]
+	path = hadoop-rs
+	url = ./hadoop-rs/
