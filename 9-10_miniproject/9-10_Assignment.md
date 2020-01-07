@@ -51,7 +51,7 @@ The relevant files are listed in `src/mappers` and `src/reducers`.
 ###
 
 ## Alt i bin
-Filer i bin er filer der er brugt til at 
+Filer i bin er filer der er brugt til at interface med Hadoop
 
 ## Results
 Use the provided tools and view the results in the output directory.
@@ -80,14 +80,10 @@ Simply combines all the deltas, reducing the complete
 
 ## Degree centrality:
 Simple counts the number of nodes that point to a specific node.
-Is actually only wordcount, there is nothing to find the max
+Is actually only wordcount, there is nothing to find the max :(
 
 ## Hadoop.sh
 Used to check for all the relevant requirements, hvis hadoop er installeret til usr/local behøves path ikke blive sat (følg digital ocean guiden.)
 https://www.digitalocean.com/community/tutorials/how-to-install-hadoop-in-stand-alone-mode-on-ubuntu-16-04
 
-## Reducer modtager en liste af key, med en liste af values til vær key.
-
-
-
-## På pagerank skal der være en combiner.
+## Reducer modtager en liste af key, med en liste af values til hver key.
