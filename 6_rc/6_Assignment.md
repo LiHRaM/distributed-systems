@@ -54,12 +54,42 @@ Material: slides on the above topics,  and DS book: Chapter on Replication.
 ## Compare and explain consistency models
 * ** There are many different consistency models.
 
-Passive-primary backup model
+Linearizability is more strict,
+* Depends on time at the client
 
-Active replication
+* Problems
+* If a client is slow, it can throw messages later than other clients, but with an earlier timestamp
+    * ** No synchronized clock among clients
+    * ** Clients can fake their time
+
+### Passive-(primary backup) model
+* ** Works by:
+    1. Request: Front end sends request
+    2. Coordination: The primary takes the request atomically
+    3. Execution: The primary executes
+    4. Agreement: The primary sends the result to all the backups and receives an ACK
+    5. Repsonse: Reply to the front end.
+
+* ** Easy to implement
+* ** Replicas need to be deterministic "state-machines"
+* ** Survives n-1 crashes (but) not byzantine failures
+* ** Is linearizable
+
+### Active replication
+* ** Different from passive, as it replicates the data directly to all replicas, straight from the front--end.
+* ** Doesnt require agreement
+1. Request: The front-end RTO multicasts to all replicas
+2. Coordination: all Replica managers take the request in FIFO order
+3. Execution: Every Replica managers executes the requested operation
+4. Agreement: No agreement needed
+5. Response: Each replies to front end
+
+Is more expensive (RTO-multicast)
+    * ** RTO multicast is only guaranteed for synchronous system
+* Can cope with (n/2-1) byzantine failures, frontend waits for n/2+1 responses, which is the majority.
+
 
 ## An execution which is sequentially consistent, but not linearizable
-
 
 * ** A service is linerabily if:
   * ** The interleaved sequence of operations meets the specification of a (single) correct copy of the objects
