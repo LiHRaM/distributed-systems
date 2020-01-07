@@ -45,9 +45,9 @@ A process defers responding to other processes once it has sent its request and 
 ## Property Comparison
 | Algorithm | Central Server | Token Ring | R&A |
 |:-:|:-:|:-:|:-:|
-| ME1 | <br>Yes | Yes | Yes |
-| ME2 | Yes | Yes | Yes |
-| ME3 | No | No, ordering is based on ring topology | Yes |
+| ME1: Safety | <br>Yes | Yes | Yes |
+| ME2: Liveness | Yes | Yes | Yes |
+| ME3: Ordering | No | No, ordering is based on ring topology | Yes |
 | Bandwidth | Enter: 2<br/>Exit: 1 | Enter: 0..N<br/>Exit: 1 | Enter: 2(N-1) without multicast<br/>Exit: 0 |
 | Client delay | Enter: Length of queue<br/>Exit: None. | 0..N | Entry: Round-trip |
 | Synch Delay | Round-trip | 1..N | 1, but with N points of failure |
