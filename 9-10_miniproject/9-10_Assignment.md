@@ -34,26 +34,60 @@ I completed the first three tasks, i.e. studied centrality, and calculated InDeg
     * ** Simply a wrapper allowing Hadoop to call executables directly.
     * ** Meaning we can use any language we want to write our mappers and reducers. 
 
-* **Hadoop** Installing Hadoop is very different depending on the PC. I tried installing it a number of times (back in october, but that install died), and again in january, to 
+* **Hadoop** Installing Hadoop is very different depending on the PC. I tried installing it a number of times (back in october, but that install died), and again in january, where I did it with group mates. My installation is not running just yet.
 * **Debugging** - Debugging distributed applications is difficult. Finding out how the MapReduce framework works like Unix pipes helped isolate where things were going wrong.
 * **Data Formatting** - In order to calculate the PageRank for the dataset, I needed to change its format. I was able to do this using a simple IdentityMapper + AppendReducer to quickly reformat the dataset into an adjacency matrix from an adjacency list.
 * **Sorting and Shuffling** - The PageRank algorithm requires repetition until convergence, i.e. that certain steps be repeated until the output is stable. As far as I'm aware, it only does this for transfers from Mappers to Reducers, which means I can't just feed the output of one reducer into another.
-* ** Data
+* **Small data-set** - means that hadoop would only start a single node anyways.
+* ** The data we used is instead just a list of nodes, with a list of nodes that are related to that key-node so:
+1   2 3 4
+2   1 2
 Is 
-Er en simple node, og noden den peger på
-Output er et delta for den givne node.
+
 Antallet af delta skulle gerne være lig med det totale antal nodes.
 
 ## Key Items
 The relevant files are listed in `src/mappers` and `src/reducers`.
+###
+
+## Alt i bin
+Filer i bin er filer der er brugt til at 
 
 ## Results
 Use the provided tools and view the results in the output directory.
 
-
 ## Makefile:
 Simply describes how the project should be run should run.
 Is called by doing: "make <which thing to run>"
+The makefile designates which mapper and which reducer to use.
+
+## Pagerank
+Preprocessing is done by combining keys of the same value, and simply adding the related values to that "master" key
+Should be run a number of times.
+To run pagerank
+1. Ensure file is in data folder and that file is updated in makefile 
+2. Open terminal in project
+3. run "make pagerank-preprocess", wait for it to finish
+4. run "make pagerank-first"
+5. run "make pagerank-intermediate", can be run a number of times, to close approximate the exact pagerank
+6. run "make pagerank-sum", to sum up the deltas.
+
+## Preprocessing is only be used to page-rank
+Is only used to join keys of the same value, so that key
+
+### Combiner
+Simply combines all the deltas, reducing the complete
 
 ## Degree centrality:
 Simple counts the number of nodes that point to a specific node.
+Is actually only wordcount, there is nothing to find the max
+
+## Hadoop.sh
+Used to check for all the relevant requirements, hvis hadoop er installeret til usr/local behøves path ikke blive sat (følg digital ocean guiden.)
+https://www.digitalocean.com/community/tutorials/how-to-install-hadoop-in-stand-alone-mode-on-ubuntu-16-04
+
+## Reducer modtager en liste af key, med en liste af values til vær key.
+
+
+
+## På pagerank skal der være en combiner.
