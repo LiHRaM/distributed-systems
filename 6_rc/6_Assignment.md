@@ -64,3 +64,7 @@ However, will the less strict Sequentially Consistent model, one could shuffle t
 ## Active vs. Passive Replication
 Passive replication uses a master-slave architecture and is linearizable under certain conditions.
 Active replication uses multicast, and performs better, but is not linearizable, only sequentially consistent.
+
+## The Gossip Architecture
+Focuses on high availability, where Replication Managers share gossip messages with each other.
+Each RM is guaranteed to become consistent over time.
